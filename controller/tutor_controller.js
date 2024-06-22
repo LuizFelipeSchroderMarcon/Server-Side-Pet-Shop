@@ -30,14 +30,18 @@ tutor.createTutor = async(req, res) => {
 
 tutor.updateTutor = async(req, res) =>{
     try {
-        const {} = req.params
-        const {} = req.body
+        const {id_tutor} = req.params
+        const {cpf, nome, email} = req.body
         
         await Tutor.update(
-            {},
-            {}
+            {
+                cpf: cpf,
+                nome: nome,
+                email: email
+            },
+            {where: {id_tutor: id_tutor}}
         )
-        const tutorAtualizado = await Tutor.findByPk()
+        const tutorAtualizado = await Tutor.findByPk(id_tutor)
         
         res.send(tutorAtualizado)
     } catch (e) {
@@ -47,10 +51,10 @@ tutor.updateTutor = async(req, res) =>{
 
 tutor.deleteTutor = async(req,res) => {
     try {
-        const {} = req.params
+        const {id_tutor} = req.params
 
         await Tutor.destroy({
-            where: {}
+            where: {id_tutor: id_tutor}
         })
 
         res.send({message: 'Tutor deletado com sucessor'})
@@ -59,3 +63,5 @@ tutor.deleteTutor = async(req,res) => {
         console.log('Não foi possivel deletar.....', e)
     }
 }
+
+export {tutor}

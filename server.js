@@ -7,14 +7,15 @@ import { Tutor } from "./models/tutor_model.js"
 import { Pet } from "./models/pet_model.js"
 import { alturaPet } from "./models/altura_pet_model.js"
 
-//Controller
+//Rotas
+import { router as tutorRoutes } from "./routes/tutor_routes.js"
 
 
 const app = express()
 app.use(express.urlencoded({extended:true}))
 app.use(cors())
 
-await db.drop({force: true})
+// await db.drop({force: true})
 await db.sync()
 
 try {
@@ -25,6 +26,7 @@ try {
     
 }
 
+app.use(tutorRoutes)
 
 app.listen(5000, () => console.log("Servidor executando em http://localhost:5000"))
 
