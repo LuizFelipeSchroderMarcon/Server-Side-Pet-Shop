@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/config.js";
+import { Pet } from "./pet_model.js";
 
 const alturaPet = db.define('altura_pet',{
     id_altura:{
@@ -13,6 +14,15 @@ const alturaPet = db.define('altura_pet',{
     }
 }, {
     freezeTableName: true
+})
+
+Pet.belongsTo(alturaPet,{
+    foreignKey: 'codigo_pet'
+})
+
+alturaPet.belongsTo(Pet,{
+    constraints: true,
+    foreignKey: 'codigo_pet'
 })
 
 export {alturaPet}

@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/config.js";
+import { Tutor } from "./tutor_model.js";
 
 const Pet = db.define('pet',{
     codigo_pet:{
@@ -16,6 +17,15 @@ const Pet = db.define('pet',{
     }
 }, {
     freezeTableName: true
+})
+
+Tutor.hasMany(Pet,{
+    constraints: true,
+    foreignKey: 'id_tutor'
+})
+
+Pet.belongsTo(Tutor,{
+    foreignKey: 'id_tutor',
 })
 
 export {Pet}
