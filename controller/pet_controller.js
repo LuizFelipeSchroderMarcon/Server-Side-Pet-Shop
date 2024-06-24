@@ -51,6 +51,8 @@ pet.deletePet = async(req,res)=>{
         await Pet.destroy({
             where:{codigo_pet:codigo_pet}
         })
+
+        res.send({message: 'Pet deletado com sucessor'})
     } catch (e) {
         console.log("Não possivel Deletar.......", e)
     }

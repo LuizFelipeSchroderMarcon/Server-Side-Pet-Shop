@@ -10,6 +10,7 @@ import { alturaPet } from "./models/altura_pet_model.js"
 //Rotas
 import { router as tutorRoutes } from "./routes/tutor_routes.js"
 import { router as petRoutes } from "./routes/pet_routes.js"
+import { router as alturaPetRoutes } from "./routes/altura_pet_routes.js"
 
 
 const app = express()
@@ -29,6 +30,7 @@ try {
 
 app.use(tutorRoutes)
 app.use(petRoutes)
+app.use(alturaPetRoutes)
 
 app.listen(5000, () => console.log("Servidor executando em http://localhost:5000"))
 
