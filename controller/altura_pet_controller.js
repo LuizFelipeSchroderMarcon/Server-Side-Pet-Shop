@@ -2,6 +2,13 @@ import { alturaPet } from "../models/altura_pet_model.js";
 
 const altura_pet = {}
 
+
+function classificarAltura(altura){
+    if(altura <= 13 ) return 'Pequeno'
+    if(altura > 13 && altura < 40) return 'Médio'
+    else return 'Alto'
+}
+
 altura_pet.getAltura = async(req,res)=>{
     try {
         const altura = await alturaPet.findAll()
@@ -14,9 +21,10 @@ altura_pet.getAltura = async(req,res)=>{
 altura_pet.createAltura = async(req,res)=>{
     try {
         const {altura, codigo_pet} = req.body;
+        const alturaClassificada = classificarAltura(altura)
 
         const novaAltura = await alturaPet.create({
-            altura: altura,
+            altura: alturaClassificada,
             codigo_pet: codigo_pet
         })
         
@@ -32,8 +40,10 @@ altura_pet.updateAltura = async(req,res)=>{
         const {id_altura} = req.params
         const {altura, codigo_pet} = req.body
 
+        const alturaClassificada = classificarAltura(altura)
+
         await alturaPet.update(
-            {altura:altura, codigo_pet: codigo_pet},
+            {altura:alturaClassificada, codigo_pet: codigo_pet},
             {where:{id_altura:id_altura}}
         )
         const alturaAtualizada = await alturaPet.findByPk(id_altura)
