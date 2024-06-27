@@ -1,0 +1,43 @@
+GET http://localhost:5000/tutor HTTP/1.1
+Content-Type: application/json
+
+
+########
+GET http://localhost:5000/pet HTTP/1.1
+Content-Type: application/json
+
+#######
+
+
+POST http://localhost:5000/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "user": "camargo",
+    "pwd": "123"
+}
+
+
+
+################# teste
+
+
+GET http://localhost:5000/tutor HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImNhbWFyZ28iLCJpYXQiOjE3MTkzNjMyMTQsImV4cCI6MTcxOTM2MzIyOX0._7e9ZcNTf3unVxySoxqPstrMo6dTV20sBB_fq2y91Z0
+Content-Type: application/json
+
+
+#####
+
+POST http://localhost:5000/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "user": "camargo",
+    "pwd": "123"
+}
+
+######
+
+POST  http://localhost:5000/logout HTTP/1.1
+Content-Type: application/json
